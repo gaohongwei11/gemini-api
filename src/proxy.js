@@ -42,8 +42,11 @@ const run = async (params) => {
     const response = await result.response;
     const conversationHistory = await model.getConversationHistory();
     resolve({
+      msg,
+      result,
+      response,
+      responseText: response.text(),
       conversationHistory,
-      response: response.text()
     })
   })
 }
