@@ -40,7 +40,10 @@ const sendMessage = async (params) => {
     const msg = params.msg;
     const result = await chat.sendMessage(msg);
     const response = await result.response;
-    resolve(chat._history)
+    resolve({
+      _history: chat._history,
+      responseText: response.text(),
+    })
   })
 }
 // reset
