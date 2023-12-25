@@ -46,7 +46,10 @@ const sendMessage = async (params) => {
         responseText: response.text(),
       })
     } catch (error) {
-      resolve(error)
+      resolve({
+        error,
+        responseText: 'error',
+      })
     }
   })
 }
