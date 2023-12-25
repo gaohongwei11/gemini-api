@@ -38,17 +38,20 @@ const sendMessage = async (params) => {
   console.log(params)
   return new Promise(async (resolve, reject) => {
     const msg = params.msg;
-    const result = await chat.sendMessage(msg);
-    const response = await result.response;
-    resolve({
-      _history: chat._history,
-      responseText: response.text(),
-    })
+    try {
+      const result = await chat.sendMessage(msg);
+      const response = await result.response;
+      resolve({
+        _history: chat._history,
+        responseText: response.text(),
+      })
+    } catch (error) {
+      resolve(error)
+    }
   })
 }
 // reset
 const reset = async (params) => {
-  console.log(params)
   return new Promise(async (resolve, reject) => {
     chat = model.startChat(
       generationConfig,
