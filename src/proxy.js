@@ -40,13 +40,11 @@ const run = async (params) => {
     const msg = params.msg;
     const result = await chat.sendMessage(msg);
     const response = await result.response;
-    const conversationHistory = await model.getConversationHistory();
     resolve({
       msg,
       result,
       response,
       responseText: response.text(),
-      conversationHistory,
     })
   })
 }
