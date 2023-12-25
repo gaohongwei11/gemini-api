@@ -11,7 +11,7 @@ app.use(json)
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // 登录
-app.post('/ai/v1/gemini', async (req, res) => {
+app.post('/ai/gemini/sendMessage', async (req, res) => {
   const result = await proxy.run(req.body)
   res.json({ code: 200, errMsg: '成功', data: result })
 })
