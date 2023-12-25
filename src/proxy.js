@@ -33,20 +33,17 @@ let chat = model.startChat(
   generationConfig,
   safetySettings
 )
-// gemini
+// sendMessage
 const sendMessage = async (params) => {
   console.log(params)
   return new Promise(async (resolve, reject) => {
     const msg = params.msg;
     const result = await chat.sendMessage(msg);
     const response = await result.response;
-    resolve({
-      chat,
-      responseText: response.text(),
-    })
+    resolve(chat._history)
   })
 }
-// gemini
+// reset
 const reset = async (params) => {
   console.log(params)
   return new Promise(async (resolve, reject) => {
