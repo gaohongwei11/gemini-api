@@ -50,7 +50,6 @@ const sendMessage = async (params) => {
 const reset = async (params) => {
   console.log(params)
   return new Promise(async (resolve, reject) => {
-    chat.reset()
     chat = model.startChat(
       generationConfig,
       safetySettings
