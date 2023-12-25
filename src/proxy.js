@@ -29,12 +29,12 @@ const safetySettings = [
     threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
   }
 ]
-const chat = model.startChat(
+let chat = model.startChat(
   generationConfig,
   safetySettings
 )
 // gemini
-const run = async (params) => {
+const sendMessage = async (params) => {
   console.log(params)
   return new Promise(async (resolve, reject) => {
     const msg = params.msg;
@@ -42,14 +42,24 @@ const run = async (params) => {
     const response = await result.response;
     resolve({
       chat,
-      msg,
-      result,
-      response,
       responseText: response.text(),
     })
   })
 }
+// gemini
+const reset = async (params) => {
+  console.log(params)
+  return new Promise(async (resolve, reject) => {
+    chat.reset()
+    chat = model.startChat(
+      generationConfig,
+      safetySettings
+    )
+    resolve()
+  })
+}
 
 module.exports = {
-  run
+  sendMessage,
+  reset,
 }

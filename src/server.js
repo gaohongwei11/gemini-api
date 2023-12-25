@@ -10,10 +10,15 @@ app.use(cors())
 app.use(json)
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// 登录
+// sendMessage
 app.post('/ai/gemini/sendMessage', async (req, res) => {
-  const result = await proxy.run(req.body)
-  res.json({ code: 200, errMsg: '成功', data: result })
+  const result = await proxy.sendMessage(req.body)
+  res.json({ code: 200, msg: 'success', data: result })
+})
+// sendMessage
+app.post('/ai/gemini/reset', async (req, res) => {
+  await proxy.reset()
+  res.json({ code: 200, msg: 'success', data: null })
 })
 
 
