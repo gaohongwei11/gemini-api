@@ -41,6 +41,7 @@ const run = async (params) => {
     const result = await chat.sendMessage(msg);
     const response = await result.response;
     resolve({
+      chat,
       msg,
       result,
       response,
